@@ -1,11 +1,13 @@
 #!/usr/bin/env python2.7
 
 import re
+import time
 from urllib2 import urlopen
 import dnslib
 import DNSserver
 
 MY_IP = []
+DELAY = 0
 
 SERVICE = re.compile(r'srv.*\.eaufavor\.info\.')
 
@@ -22,6 +24,7 @@ class DNSreflector(DNSserver.DNSUDPRequestHandler):
         else:
             ans = MY_IP
             code = dnslib.RCODE.NOERROR
+            time.sleep(DELAY)
         addtional = (['aay'], dnslib.RCODE.NOERROR, dnslib.QTYPE.TXT)
 
         return ((ans, code), [addtional])
