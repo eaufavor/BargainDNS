@@ -14,14 +14,13 @@ import datetime
 import threading
 import traceback
 import SocketServer
-import dnslib
 import os.path
 import signal
-import daemon
-import daemon.pidfile
 import logging
 import pickle
-
+import dnslib
+import daemon
+import daemon.pidfile
 #from dnslib import *
 
 PORT = 53
@@ -241,7 +240,9 @@ class DNSserver(object):
                                  pid)
                 sys.exit(-1)
             serverLog = open('DNSserver.log', 'a+')
-            context = daemon.DaemonContext(stdout=serverLog, stderr=serverLog, pidfile=pidFile)
+            context = daemon.DaemonContext(stdout=serverLog,\
+                                   stderr=serverLog,\
+                                   pidfile=pidFile)
             context.files_preserve = [serverLog]
             with context:
                 logging.info("Starting Daemon on port %d", args.port)

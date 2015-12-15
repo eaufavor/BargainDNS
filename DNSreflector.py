@@ -1,8 +1,9 @@
 #!/usr/bin/env python2.7
-import DNSserver
-import dnslib
-from urllib2 import urlopen
+
 import re
+from urllib2 import urlopen
+import dnslib
+import DNSserver
 
 MY_IP = []
 
@@ -27,7 +28,7 @@ class DNSreflector(DNSserver.DNSUDPRequestHandler):
 
 
 if __name__ == '__main__':
-    # update my IP
+    # get my public IP
     MY_IP.append(urlopen('http://ip.42.pl/raw').read())
     print MY_IP
     # start server

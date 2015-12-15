@@ -1,12 +1,13 @@
 #!/usr/bin/env python2.7
-import DNSserver
-from dns import message, query, exception
+
 import logging
-import dnslib
 import time
-from threading import Thread
 import Queue
 import re
+from threading import Thread
+from dns import message, query, exception
+import dnslib
+import DNSserver
 
 WHITE_LIST = re.compile(r'srv.*\.eaufavor\.info\.')
 DNSlist = ['8.8.8.8']
@@ -137,7 +138,7 @@ class DNSresolver(DNSserver.DNSUDPRequestHandler):
         logging.info("got first response:%s", first_response)
         return first_response
 
-
+        '''
         start = time.time()*1000
         #if reply_callback:
         #    reply_query(first_response, request, reply_callback)
@@ -151,6 +152,7 @@ class DNSresolver(DNSserver.DNSUDPRequestHandler):
         logging.debug("all workers finished")
         while not queue.empty():
             answers.append(queue.get())
+        '''
 
 
 
